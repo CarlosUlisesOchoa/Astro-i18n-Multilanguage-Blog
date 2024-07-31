@@ -1,9 +1,13 @@
 ---
-import { people, getPersonPath } from "@utilities/people";
+import { people, getPersonPath } from '@utilities/people'
 ---
 
 <ul>
-{people.map((person)=>(
-	<li><a href={getPersonPath(Astro.currentLocale, person.id)}>{`${person.fullName}`}</a></li>
-))}
+  {
+    people.map((person) => (
+      <li>
+        <a href={getPersonPath(Astro.currentLocale, person.id)}>{`${person.fullName}`}</a>
+      </li>
+    ))
+  }
 </ul>

@@ -1,29 +1,34 @@
 ---
-import { getUniqueTags } from '@utilities/tags';
-import { getTagPath } from '@utilities/tags';
+import { getUniqueTags } from '@utilities/tags'
+import { getTagPath } from '@utilities/tags'
 import Page from '@layouts/Page.astro'
-import type { CommonFrontmatter } from '@src/types';
+import type { CommonFrontmatter } from '@src/types'
 
-interface Frontmatter extends CommonFrontmatter{
-	collection: string
+interface Frontmatter extends CommonFrontmatter {
+  collection: string
 }
 
-interface Props{
-	frontmatter: Frontmatter
+interface Props {
+  frontmatter: Frontmatter
 }
 
-const {frontmatter} = Astro.props
-const tags = (await getUniqueTags(frontmatter.collection, Astro.currentLocale)).filter((tag) => {
-	return tag.slugified !== 'other'
-})
+const { frontmatter } = Astro.props
+const tags = (await getUniqueTags(frontmatter.collection, Astro.currentLocale)).filter(
+  (tag) => {
+    return tag.slugified !== 'other'
+  }
+)
 ---
+
 <Page {frontmatter}>
-	<slot/>
-	<ul>
-		{tags.map(({ slugified, name }) => 
-			<li>
-				<a href={getTagPath(Astro.currentLocale, slugified)}>{name}</a>
-			</li>
-		)}
-	</ul>
+  <slot />
+  <ul>
+    {
+      tags.map(({ slugified, name }) => (
+        <li>
+          <a href={getTagPath(Astro.currentLocale, slugified)}>{name}</a>
+        </li>
+      ))
+    }
+  </ul>
 </Page>

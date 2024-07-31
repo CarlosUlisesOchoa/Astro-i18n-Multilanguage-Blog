@@ -1,25 +1,25 @@
-import rss from '@astrojs/rss';
-import { siteTitle } from '../consts';
-import { uiStrings } from '@i18n/uiStrings';
-import { getPostsToRenderInRSS } from '@utilities/getPostsToRenderInRSS';
-import sanitizeHtml from 'sanitize-html';
-import MarkdownIt from 'markdown-it';
-import type { APIContext } from 'astro';
-const parser = new MarkdownIt();
+import rss from '@astrojs/rss'
+import { siteTitle } from '../consts'
+import { uiStrings } from '@i18n/uiStrings'
+import { getPostsToRenderInRSS } from '@utilities/getPostsToRenderInRSS'
+import sanitizeHtml from 'sanitize-html'
+import MarkdownIt from 'markdown-it'
+import type { APIContext } from 'astro'
+const parser = new MarkdownIt()
 
 export async function GET(context: APIContext) {
-	const postsToRender = await getPostsToRenderInRSS(context, 'en', 'blog')
+  const postsToRender = await getPostsToRenderInRSS(context, 'en', 'blog')
 
-	return rss({
-		title: siteTitle,
-		description: uiStrings.siteDescription.en,
-		site: context.site,
-		items: postsToRender.map((post) => ({
-			title: post.title ?? "",
-			pubDate: post.pubDate ?? new Date(),
-			link: post.link,
-			content: sanitizeHtml(parser.render(post.body)),
-			...post
-		})),
-	});
+  return rss({
+    title: siteTitle,
+    description: uiStrings.siteDescription.en,
+    site: context.site,
+    items: postsToRender.map((post) => ({
+      title: post.title ?? '',
+      pubDate: post.pubDate ?? new Date(),
+      link: post.link,
+      content: sanitizeHtml(parser.render(post.body)),
+      ...post,
+    })),
+  })
 }
