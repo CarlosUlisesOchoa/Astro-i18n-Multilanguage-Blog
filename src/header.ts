@@ -34,6 +34,11 @@ export const headerMenu: Record<string, Record<string, navigationItem[]>> = {
 		{
 			path: '/de/thema',
 			label: 'Themen'
-		},]
+		},
+		{
+			path: '/de/ueber',
+			label: 'Über uns'
+		},
+	]
 	},
 };
