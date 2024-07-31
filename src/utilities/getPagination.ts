@@ -13,11 +13,14 @@ const getPagination = <T>({ posts, page, isIndex = false }: GetPaginationProps<T
   const totalPagesArray = getPageNumbers(posts.length)
   const totalPages = totalPagesArray.length
 
-  const currentPage = isIndex
-    ? 1
-    : page && !isNaN(Number(page)) && totalPagesArray.includes(Number(page))
-    ? Number(page)
-    : 0
+  let currentPage = 0
+  if (!isIndex) {
+    if (page && !isNaN(Number(page)) && totalPagesArray.includes(Number(page))) {
+      currentPage = Number(page)
+    }
+  } else {
+    currentPage = 1
+  }
 
   const lastPost = isIndex ? postsPerPage : currentPage * postsPerPage
   const startPost = isIndex ? 0 : lastPost - postsPerPage

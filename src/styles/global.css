@@ -14,13 +14,19 @@ html {
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
 }
-body {
-  min-height: 100svh;
-}
 body,
 :where(h1, h2, h3, h4, p, figure, blockquote, dl, dd) {
   margin: 0;
 }
+body {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex-grow: 1;
+}
+
 :where(ul, ol) {
   list-style-type: '';
   margin: 0;
@@ -60,14 +66,4 @@ body,
     --duration-link: 5ms;
     --duration-link-hover: 5ms;
   }
-}
-
-/* Basic layout */
-
-body {
-  display: flex;
-  flex-direction: column;
-}
-main {
-  flex-grow: 1;
 }

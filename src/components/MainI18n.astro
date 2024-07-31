@@ -57,7 +57,7 @@ if (reference) {
     }
   } else {
     // The current page is part of a collection
-    const translationsSlugs = (await getPublishedPosts('', collection, ''))
+    const translationsSlugs = (await getPublishedPosts('', 'blog', ''))
       .filter((post) => post.data.reference === reference)
       .filter(function (post) {
         return getLocaleFromUrl(post.slug) !== Astro.currentLocale

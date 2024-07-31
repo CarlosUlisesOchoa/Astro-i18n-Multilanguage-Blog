@@ -1,6 +1,5 @@
 import getPagePath from '@utilities/getPagePath'
-import { collectionDirectoryNames } from '@i18n/i18n'
-import { locales } from '@i18n/i18n'
+import { locales, collectionDirectoryNames } from '@i18n/i18n'
 import { site } from '@src/consts'
 
 export function getRelativePostPath(
