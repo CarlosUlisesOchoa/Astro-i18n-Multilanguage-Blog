@@ -1,0 +1,17 @@
+---
+const currentLocale = Astro.currentLocale
+---
+<aside id="translations-banner" class="translations-banner">
+	<slot/>
+</aside>
+
+<style>
+	.translations-banner[aria-hidden="true"]{
+		display: none;
+	}
+</style>
+
+<script define:vars={{currentLocale}}>
+	const banner = document.getElementById('translations-banner')
+	if (currentLocale == window.navigator.language || currentLocale == window.navigator.language.slice(0, 2)) banner.setAttribute("aria-hidden", "true");
+</script>

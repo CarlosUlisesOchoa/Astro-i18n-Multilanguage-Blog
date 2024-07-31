@@ -1,0 +1,36 @@
+---
+import Head from '@components/Head.astro';
+import SkipLink from '@components/SkipLink.astro';
+import type { CommonFrontmatter } from '@src/types';
+interface Props{
+  frontmatter: CommonFrontmatter,
+  includeCanonicalMeta?: boolean,
+  includeSkipLink?: boolean
+}
+
+const {frontmatter, includeCanonicalMeta = true, includeSkipLink = true} = Astro.props
+const mode: string = import.meta.env.MODE
+const lang = Astro.currentLocale
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <Head {frontmatter} {includeCanonicalMeta} >
+      <slot name="head" />
+    </Head>
+  </head>
+  <body>
+    {includeSkipLink &&
+      <SkipLink />
+    }
+		<slot/>
+	</body>
+  {mode === 'development' &&
+    <script>
+      setTimeout(()=>{
+        const main = document.getElementById('main')
+        if (main === null) window.alert("This template doesn't have a #main element. It's required for the skip link to work.")
+      }, 1000)
+    </script>
+  }
+</html>

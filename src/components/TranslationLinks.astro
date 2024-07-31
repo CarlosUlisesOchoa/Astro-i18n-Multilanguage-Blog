@@ -1,0 +1,21 @@
+---
+import { uiStrings } from '@i18n/uiStrings';
+import type { TranslationLink } from './MainI18n.astro';
+
+interface Props {
+	translationLinks: TranslationLink[]
+}
+
+const
+	{ translationLinks } = Astro.props,
+	pageTranslationsAvailableIn = `${uiStrings.pageTranslationsAvailableIn[ Astro.currentLocale]} `;
+---
+{ pageTranslationsAvailableIn &&
+	<p>
+		{pageTranslationsAvailableIn}
+		{translationLinks.map((translation, index) => (
+			<a href={translation.relativeURL} hreflang={translation.locale}>
+				{translation.label}
+			</a><>{index < translationLinks.length - 1 ? ', ' : null}</>))}.
+	</p>
+}

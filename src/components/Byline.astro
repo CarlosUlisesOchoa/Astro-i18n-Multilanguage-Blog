@@ -1,0 +1,27 @@
+---
+import type { Person } from '@utilities/people'
+import FormattedDate from '@components/FormattedDate.astro'
+import { people, getPersonPath } from '@utilities/people'
+interface Props {
+	authorFullName: string,
+	pubDate: Date,
+	updatedDate: Date
+}
+const { authorFullName  = '', pubDate, updatedDate } = Astro.props
+let person: Person = people.find(person => {return person.fullName === authorFullName})
+const hasAuthorLink: boolean = typeof person === 'object'
+---
+<p>
+	{authorFullName &&
+		<span>{ hasAuthorLink && <a href={getPersonPath(Astro.currentLocale, person.id)}>{person.fullName}</a> }</span>
+		<span>{ !hasAuthorLink && <span>{authorFullName}</span> }</span>
+		<span>, </span>
+	}
+	<FormattedDate date={pubDate} />
+		{updatedDate && (
+				<span >
+					Last updated on <FormattedDate date={updatedDate} />
+				</span>
+			)
+		}
+</p>
