@@ -82,8 +82,8 @@ All default commands can be run from the root of the project, from a terminal:
 | `pnpm run astro -- --help` | Get help using the Astro CLI                     |
 
 ## ✅ TODO
-You can check TODO-List at [TODO.md](./TODO.md)
+You can check TODO-List at [TODO.md](./.github/TODO.md)
 
 ## Acknowledgements
 
-- Special thanks to [@kslstn](https://github.com/kslstn) for the [astro-i18n-blog-starter](https://github.com/kslstn/astro-i18n-blog-starter) component, which served as a base for this enhanced version.
+- Special thanks to [@kslstn](https://github.com/kslstn) for the [astro-i18n-blog-starter](https://github.com/kslstn/astro-i18n-blog-starter), which served as a base for this version.
