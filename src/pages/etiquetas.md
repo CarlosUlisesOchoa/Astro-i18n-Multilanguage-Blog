@@ -1,6 +1,6 @@
 ---
 layout: '@layouts/TagArchive.astro'
-title: Todas las etiquetas
+title: Etiquetas
 description: Todas las etiquetas en este blog
 collection: blog
 reference: tagArchive
