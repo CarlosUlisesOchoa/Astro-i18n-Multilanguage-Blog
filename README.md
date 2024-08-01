@@ -1,5 +1,21 @@
 # Carlos Ochoa's Blog (Made with Astro + i18n)
 
+### Home page (English)
+![image](https://github.com/user-attachments/assets/80725a88-c477-4fe7-9ffe-ae1391d94911)
+
+### Blog (English)
+![image](https://github.com/user-attachments/assets/9d44d420-4526-468b-811d-3d22d2e1f3df)
+
+### Blog (Spanish)
+![image](https://github.com/user-attachments/assets/53710025-8a4f-4f2d-9160-58484681225a)
+
+### First post (English)
+![image](https://github.com/user-attachments/assets/60657acf-0dba-4d0f-8d3b-82fcc7fdbab9)
+
+### First post (Spanish)
+![image](https://github.com/user-attachments/assets/235e15d7-ab62-4c95-8286-384d75af8fbf)
+
+
 ## Features
 
 - ⛓️ Linked translations via a reference property: no need for matching slugs between locales.
@@ -64,6 +80,9 @@ All default commands can be run from the root of the project, from a terminal:
 | `pnpm run preview`         | Preview your build locally, before deploying     |
 | `pnpm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `pnpm run astro -- --help` | Get help using the Astro CLI                     |
+
+## ✅ TODO
+You can check TODO-List at [TODO.md](./TODO.md)
 
 ## Acknowledgements
 
