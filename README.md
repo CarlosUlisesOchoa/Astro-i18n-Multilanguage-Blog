@@ -37,8 +37,7 @@ You'll see the following folders and files:
 │   ├── utilities/
 │   ├── consts.ts ← Settings loaded by astro.config.mjs
 │   ├── env.d.ts
-│   ├── header.ts ← Settings for header menus, optionally per locale
-│   └── people.ts ← Bylines and author profile pages
+│   └── header.ts ← Settings for header menus, optionally per locale
 ├── astro.config.mjs
 ├── README.md
 ├── package.json
