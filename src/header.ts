@@ -4,43 +4,43 @@ export type navigationItem = Readonly<{
 }>
 
 export const headerMenu: Record<string, Record<string, navigationItem[]>> = {
-  en: {
+  es: {
     items: [
       {
         path: '/',
-        label: 'Home',
+        label: 'Inicio',
       },
       {
         path: '/blog',
         label: 'Blog',
       },
       {
-        path: '/tag',
-        label: 'Tags',
+        path: '/etiquetas',
+        label: 'Etiquetas',
       },
       {
-        path: '/about',
-        label: 'About',
+        path: '/acerca-de',
+        label: 'Acerca de',
       },
     ],
   },
-  de: {
+  en: {
     items: [
       {
-        path: '/de/',
+        path: '/en/',
         label: 'Home',
       },
       {
-        path: '/de/blog',
+        path: '/en/blog',
         label: 'Blog',
       },
       {
-        path: '/de/thema',
-        label: 'Themen',
+        path: '/en/tags',
+        label: 'Tags',
       },
       {
-        path: '/de/ueber',
-        label: 'Über uns',
+        path: '/en/about',
+        label: 'About',
       },
     ],
   },

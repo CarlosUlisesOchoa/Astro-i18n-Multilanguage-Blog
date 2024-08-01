@@ -5,4 +5,4 @@ collection: blog
 reference: tagArchive
 ---
 
-Here are all topics discussed in blog posts on this website.
+Here are all the tags discussed in posts.

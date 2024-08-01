@@ -8,47 +8,47 @@ interface TypeUIStrings {
 
 export const uiStrings: TypeUIStrings = {
   siteDescription: {
+    es: 'Todo lo básico para un blog completamente nuevo.',
     en: 'All the basics for a brand-new blog.',
-    de: 'Die Basics für eine niegelnagelneues Blog',
   },
   skipLink: {
+    es: 'Saltar al contenido',
     en: 'Skip to content',
-    de: 'Zum Inhalt springen',
   },
   pageTranslationsAvailableIn: {
+    es: 'Esta página también está disponible en',
     en: 'This page is also available in',
-    de: 'Diese Seite gibt es auch auf',
+  },
+  es: {
+    es: 'Español',
+    en: 'Spanish',
   },
   en: {
+    es: 'Inglés',
     en: 'English',
-    de: 'englisch',
-  },
-  de: {
-    en: 'German',
-    de: 'deutsch',
   },
   tagHeadingSingular: {
+    es: 'Etiqueta',
     en: 'Tag',
-    de: 'Thema',
   },
   tagHeadingPlural: {
+    es: 'Etiquetas',
     en: 'Tags',
-    de: 'Themen',
   },
   postsPerTagPageDescription: {
+    es: 'Publicaciones sobre',
     en: 'Posts about',
-    de: 'Posts zum Thema',
   },
-  personProfilePageDescription: {
-    en: 'Profile of',
-    de: 'Profil von',
+  postLastUpdatedOn: {
+    es: 'Última actualización el',
+    en: 'Last updated on',
   },
   pageNotFoundHeading: {
+    es: 'Página no encontrada',
     en: 'Page not found',
-    de: 'Seite nicht gefunden',
   },
   pageNotFoundBody: {
+    es: '404!',
     en: '404!',
-    de: '404!',
   },
 }

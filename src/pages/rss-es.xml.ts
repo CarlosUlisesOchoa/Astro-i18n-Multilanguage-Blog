@@ -8,11 +8,11 @@ import type { APIContext } from 'astro'
 const parser = new MarkdownIt()
 
 export async function GET(context: APIContext) {
-  const postsToRender = await getPostsToRenderInRSS(context, 'de', 'blog')
+  const postsToRender = await getPostsToRenderInRSS(context, 'es', 'blog')
 
   return rss({
     title: siteTitle,
-    description: uiStrings.siteDescription.de,
+    description: uiStrings.siteDescription.es,
     site: context.site,
     items: postsToRender.map((post) => ({
       title: post.title ?? '',
