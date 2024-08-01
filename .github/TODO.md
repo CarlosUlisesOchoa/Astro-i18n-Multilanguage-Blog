@@ -11,3 +11,5 @@
 - [ ] Improve main page
 - [ ] Improve about page
 - [ ] Add view transitions to improve UX
+- [ ] Page "Tags" should specify that it list all tags but only in the current locale
+- [ ] Fix current way dates are displayed in posts and lists of posts
