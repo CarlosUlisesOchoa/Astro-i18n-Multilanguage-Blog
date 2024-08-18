@@ -6,4 +6,4 @@ collection: blog
 reference: tagArchive
 ---
 
-Aquí están todas las etiquetas que se discuten en los posts.
+¡Bienvenido a la página de Etiquetas! Aquí puedes encontrar todas las etiquetas que usamos para categorizar nuestro contenido. Haz clic en cualquier etiqueta para explorar las publicaciones relacionadas con ese tema.

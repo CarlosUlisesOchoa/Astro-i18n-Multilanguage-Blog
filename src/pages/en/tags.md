@@ -5,4 +5,4 @@ collection: blog
 reference: tagArchive
 ---
 
-Here are all the tags discussed in posts.
+Welcome to the Tags page! Here, you can find all the tags we use to categorize our content. Click on any tag to explore posts related to that topic.

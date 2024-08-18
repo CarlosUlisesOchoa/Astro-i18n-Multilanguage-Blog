@@ -1,7 +1,9 @@
 ---
 import Byline from '@components/Byline.astro'
 import PostTags from '@components/PostTags.astro'
+import { uiStrings } from '@i18n/uiStrings'
 import MainI18n from '@components/MainI18n.astro'
+import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
 
 type Props = CollectionEntry<'blog'>['data']
@@ -11,26 +13,36 @@ const frontmatter = Astro.props,
   realTags: string[] = tags.filter((tag) => {
     return tag !== 'other'
   })
+
+const postPreviewImageAlt = uiStrings.postPreviewImageAlt[Astro.currentLocale]
 ---
 
 <MainI18n {frontmatter} collection='blog'>
-  <main id='main' tabindex='”1”'>
-    <article>
-      <header>
-        {previewImage && <img width={1020} height={510} src={previewImage} alt='' />}
-        <h1>{title}</h1>
-        <Byline {pubDate} {updatedDate} />
-        <div class='prose'>
+  <div class='body mt-4 py-0 px-4 sm:px-8 u-center'>
+    <main id='main' class='post page' tabindex='”1”'>
+      <article>
+        <header id='article-header' class='article-header'>
+          {
+            previewImage && (
+              <Image
+                class='mb-2'
+                width={800}
+                height={400}
+                src={previewImage}
+                alt={postPreviewImageAlt}
+              />
+            )
+          }
+          <h1>{title}</h1>
+          <Byline className='mt-2' {pubDate} {updatedDate} />
+        </header>
+        <div class='md-content'>
           <slot />
         </div>
-        {
-          realTags.length > 0 && (
-            <footer>
-              <PostTags tags={realTags} />
-            </footer>
-          )
-        }
-      </header>
-    </article>
-  </main></MainI18n
->
+        <footer>
+          {realTags.length > 0 && <PostTags tags={realTags} />}
+        </footer>
+      </article>
+    </main>
+  </div>
+</MainI18n>

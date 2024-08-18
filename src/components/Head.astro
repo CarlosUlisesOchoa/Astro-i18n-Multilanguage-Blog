@@ -1,18 +1,19 @@
 ---
-import { siteTitle, siteThemeColor } from '@src/consts'
+import { siteTitle } from '@src/consts'
 import DescriptionMeta from './DescriptionMeta.astro'
 import type { CommonFrontmatter } from '@src/types'
 
 // Import the global.css file here so that it is included on
-// all pages through the use of the <BaseHead /> component.
+// all pages through the use of the <Head /> component.
 import '../styles/global.css'
-import '@exampledev/new.css'
-import '../styles/prose.css'
 
 interface Props {
   frontmatter: CommonFrontmatter
   includeCanonicalMeta?: boolean
 }
+
+// This site color should change depending on the theme.
+const siteThemeColor = '#fff'
 
 const mode = import.meta.env.MODE,
   { frontmatter, includeCanonicalMeta = true } = Astro.props,

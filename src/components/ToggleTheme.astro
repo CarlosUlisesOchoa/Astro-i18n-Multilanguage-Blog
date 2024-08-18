@@ -1,0 +1,100 @@
+---
+import { cn } from '@src/libs/utils'
+import GearIcon from './Icons/GearIcon.astro'
+import SunIcon from './Icons/SunIcon.astro'
+import MoonIcon from './Icons/MoonIcon.astro'
+import { uiStrings } from '@i18n/uiStrings'
+
+interface Props {
+  className?: string
+}
+
+const { className = '' } = Astro.props as Props
+
+const toggleThemeLabel = uiStrings.toggleThemeLabel[Astro.currentLocale]
+---
+
+<button
+  id='themeToggle'
+  aria-label={toggleThemeLabel}
+  class={cn(
+    'border-2 border-gray-200 text-sm rounded-lg  dark:border-gray-800/40 px-3 py-3',
+    className
+  )}
+>
+  <GearIcon className='flex system-icon w-full h-full' />
+  <SunIcon className='hidden light-icon w-full h-full' />
+  <MoonIcon className='hidden dark-icon w-full h-full' />
+</button>
+
+<script is:inline>
+  const html = () => document.documentElement
+  const button = () => document.getElementById('themeToggle')
+  const lightIcon = () => document.querySelector('.dark-icon')
+  const darkIcon = () => document.querySelector('.light-icon')
+  const systemIcon = () => document.querySelector('.system-icon')
+  const themeMetaTag = () => document.querySelector('meta[name="theme-color"]')
+  const msNavButtonColorMetaTag = () =>
+    document.querySelector('meta[name="msapplication-navbutton-color"]')
+  const appleWebAppStatusBarMetaTag = () =>
+    document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]')
+
+  function getThemePreference() {
+    return matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  }
+
+  function updateElementsForTheme(newTheme) {
+    if (newTheme === 'light') {
+      html().classList.remove('dark')
+      lightIcon().classList.remove('hidden')
+      darkIcon().classList.add('hidden')
+      systemIcon().classList.add('hidden')
+      updateMetaTags('#fff')
+    } else if (newTheme === 'dark') {
+      html().classList.add('dark')
+      lightIcon().classList.add('hidden')
+      darkIcon().classList.remove('hidden')
+      systemIcon().classList.add('hidden')
+      updateMetaTags('#000')
+    } else {
+      newTheme = getThemePreference()
+      systemIcon().classList.remove('hidden')
+      lightIcon().classList.add('hidden')
+      darkIcon().classList.add('hidden')
+      if (newTheme === 'dark') {
+        html().classList.add('dark')
+        updateMetaTags('#000')
+      } else {
+        html().classList.remove('dark')
+        updateMetaTags('#fff')
+      }
+    }
+  }
+
+  function updateMetaTags(color) {
+    themeMetaTag().setAttribute('content', color)
+    msNavButtonColorMetaTag().setAttribute('content', color)
+    appleWebAppStatusBarMetaTag().setAttribute('content', color)
+  }
+
+  function initialize() {
+    const startingTheme = typeof localStorage !== 'undefined' && localStorage.getItem('theme')
+    const theme = startingTheme ?? 'system'
+    updateElementsForTheme(theme)
+
+    button().addEventListener('click', () => {
+      const currentTheme = html().classList.contains('dark') ? 'dark' : 'light'
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
+      if (newTheme === 'system') {
+        localStorage.removeItem('theme')
+      } else {
+        localStorage.setItem('theme', newTheme)
+      }
+      updateElementsForTheme(newTheme)
+    })
+  }
+
+  initialize()
+
+  document.addEventListener('astro:after-swap', initialize)
+</script>

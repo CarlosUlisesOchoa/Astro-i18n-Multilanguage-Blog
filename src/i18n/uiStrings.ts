@@ -7,17 +7,37 @@ interface TypeUIStrings {
 }
 
 export const uiStrings: TypeUIStrings = {
+  siteLogoLabel: {
+    es: 'Logo del blog',
+    en: "Blog's logo",
+  },
   siteDescription: {
     es: 'Todo lo básico para un blog completamente nuevo.',
     en: 'All the basics for a brand-new blog.',
   },
-  skipLink: {
-    es: 'Saltar al contenido',
-    en: 'Skip to content',
+  headerToggleMenu: {
+    en: 'Toggle Menu',
+    es: 'Alternar menú',
   },
-  pageTranslationsAvailableIn: {
-    es: 'Esta página también está disponible en',
-    en: 'This page is also available in',
+  headerMainNavigation: {
+    en: 'Main navigation',
+    es: 'Navegación principal',
+  },
+  toggleThemeLabel: {
+    en: 'Toggle theme',
+    es: 'Alternar tema',
+  },
+  languageSwitcherLanguageSelection: {
+    en: 'Language selection',
+    es: 'Selección de idioma',
+  },
+  languageSwitcher: {
+    es: 'Idioma',
+    en: 'Language',
+  },
+  languageSwitcherSelection: {
+    es: 'Seleccionar idioma',
+    en: 'Language selection',
   },
   es: {
     es: 'Español',
@@ -42,6 +62,10 @@ export const uiStrings: TypeUIStrings = {
   postLastUpdatedOn: {
     es: 'Última actualización el',
     en: 'Last updated on',
+  },
+  postPreviewImageAlt: {
+    es: 'Imagen de la publicación',
+    en: 'Post preview image',
   },
   pageNotFoundHeading: {
     es: 'Página no encontrada',
