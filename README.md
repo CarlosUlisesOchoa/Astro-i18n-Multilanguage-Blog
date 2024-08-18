@@ -1,8 +1,8 @@
-# Astro 4 + Multilanguage (i18n) + Static Blog System Example
+# Astro 4 + Multilanguage (i18n) + Blog System Example
 
 ### Take a look at this basic but pretty and clean example
-![ff](https://github.com/user-attachments/assets/3715d032-1057-4844-87b3-4c0322fc9f33)
 
+![ff](https://github.com/user-attachments/assets/3715d032-1057-4844-87b3-4c0322fc9f33)
 
 ## Features
 
