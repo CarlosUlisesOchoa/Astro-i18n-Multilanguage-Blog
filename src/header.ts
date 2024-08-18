@@ -19,8 +19,8 @@ export const headerMenu: Record<string, Record<string, navigationItem[]>> = {
         label: 'Etiquetas',
       },
       {
-        path: '/acerca-de',
-        label: 'Acerca de',
+        path: '/acerca',
+        label: 'Acerca',
       },
     ],
   },

@@ -10,8 +10,14 @@ const { frontmatter } = Astro.props,
 ---
 
 <MainI18n {frontmatter} collection='pages'>
-  <main id='main' class='prose'>
-    {title && <h1>{title}</h1>}
-    <slot />
-  </main>
+  <div class='body mt-4 py-0 px-4 sm:px-8 u-center'>
+    <main id='main' class='page'>
+      <header id='article-header' class='article-header'>
+        <h1 class='pb-1'>{title}</h1>
+      </header>
+      <div class='md-content'>
+        <slot />
+      </div>
+    </main>
+  </div>
 </MainI18n>

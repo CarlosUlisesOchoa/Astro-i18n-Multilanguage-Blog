@@ -13,9 +13,13 @@ const { frontmatter } = Astro.props,
 
 <Html {frontmatter} includeCanonicalMeta={false} />
 <Header />
-<main id='main'>
-  <article class='prose'>
-    <h1>{title}</h1>
-    <slot />
-  </article>
-</main>
+<div class='body mt-4 py-0 px-4 sm:px-8 u-center'>
+  <main id='main' class='page'>
+    <article class='md-content'>
+      <header id='article-header' class='article-header'>
+        <h1 class='pb-1'>{title}</h1>
+      </header>
+      <slot />
+    </article>
+  </main>
+</div>

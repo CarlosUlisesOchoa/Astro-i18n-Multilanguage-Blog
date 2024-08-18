@@ -1,32 +1,138 @@
 ---
+import { cn } from '@src/libs/utils'
 import { defaultLocale, fallback } from '@i18n/i18n'
 import HeaderLink from './HeaderLink.astro'
 import { headerMenu } from '@src/header'
 import type { navigationItem } from '@src/header'
+import ToggleTheme from './ToggleTheme.astro'
+import { uiStrings } from '@i18n/uiStrings'
+
+interface Props {
+  className?: string
+}
+
+const { className = '' } = Astro.props
+
+const headerToggleMenu = uiStrings.headerToggleMenu[Astro.currentLocale]
+const siteLogoLabel = uiStrings.siteLogoLabel[Astro.currentLocale]
 
 // If no items are available for the page's locale, the items for the defaultLocale will be used:
 const menuLocale: string = headerMenu[Astro.currentLocale]
   ? Astro.currentLocale
   : fallback[Astro.currentLocale] || defaultLocale
-const headerMenuItems: navigationItem[] = headerMenu[menuLocale].items
+const headerMenuItems: navigationItem[] = headerMenu[menuLocale].items ?? []
 ---
 
-<header>
-  <nav>
-    <slot />
-    <ul class='header__list'>
-      {headerMenuItems.map((item) => <HeaderLink href={item.path}>{item.label}</HeaderLink>)}
-    </ul>
-  </nav>
+<header
+  class={cn(
+    'header w-full top-0 inset-x-0 z-50 content-center sticky items-center justify-center',
+    className
+  )}
+  id='header'
+>
+  <div
+    class='header-inner px-4 sm:px-8 u-center flex flex-wrap items-center justify-between py-4 font-header'
+  >
+    <!-- This link takes you to the main page -->
+    <a
+      aria-label={siteLogoLabel}
+      href={headerMenuItems.length > 0 ? headerMenuItems[0].path : '#!'}
+      class='flex order-first items-center space-x-2'
+      ><span
+        class='dark:text-foreground font-bold md:text-xl self-center text-lg sm:text-2xl whitespace-nowrap'
+        >&lt;Blog /&gt;</span
+      ></a
+    >
+    <div class='flex items-center content-center md:order-2 gap-4 md:gap-6 lg:gap-8'>
+      <ToggleTheme
+        className='py-3 rounded-md bg-gray-100 text-foreground/80 hover:bg-gray-200 dark:bg-gray-700/20 dark:hover:bg-gray-700/60 hover:text-foreground active:bg-gray-300 dark:active:bg-gray-700/80 xxxtransition-colors'
+      />
+      <slot name='header-right' />
+      <slot />
+      <button
+        id='burgerButton'
+        type='button'
+        class='inline-flex items-center p-2 w-10 bg-background h-10 justify-center bg-gray-100 hover:bg-gray-200 active:bg-gray-300 text-sm text-foreground rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:focus:ring-gray-600 dark:bg-gray-700/20 dark:hover:bg-gray-700/60 dark:active:bg-gray-700/80'
+        aria-controls='navMenu'
+        aria-expanded='false'
+      >
+        <span class='sr-only'>{headerToggleMenu}</span>
+        <svg
+          class='w-5 h-5'
+          aria-hidden='true'
+          xmlns='http://www.w3.org/2000/svg'
+          fill='none'
+          viewBox='0 0 17 14'
+        >
+          <path
+            stroke='currentColor'
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            stroke-width='2'
+            d='M1 1h15M1 7h15M1 13h15'></path>
+        </svg>
+      </button>
+    </div>
+    <nav
+      class='items-center justify-between hidden w-full md:flex md:w-auto md:order-1'
+      id='navMenu'
+    >
+      <ul
+        class='flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-2 md:flex-row md:mt-0 md:border-0 dark:border-gray-700'
+      >
+        {
+          headerMenuItems.map((item) => (
+            <li>
+              <HeaderLink
+                href={item.path}
+                className='flex items-center px-4 py-3 rounded-md text-foreground/80 hover:bg-gray-100 dark:hover:bg-gray-700/60 hover:text-foreground active:bg-gray-300 dark:active:bg-gray-700/80 transition-colors'>
+                {item.label}
+              </HeaderLink>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
 </header>
 
+<script is:inline>
+  function getBurgerButton() {
+    return document.getElementById('burgerButton')
+  }
+
+  function getNavMenu() {
+    return document.getElementById('navMenu')
+  }
+
+  function handleMenuOnClick() {
+    const burgerButton = getBurgerButton()
+    const navMenu = getNavMenu()
+
+    navMenu.classList.toggle('hidden')
+    burgerButton.classList.toggle('expanded')
+  }
+
+  const burgerButton = getBurgerButton()
+  burgerButton.addEventListener('click', handleMenuOnClick)
+
+  document.addEventListener('astro:after-swap', () => {
+    const burgerButton = getBurgerButton()
+    burgerButton.removeEventListener('click', handleMenuOnClick)
+    burgerButton.addEventListener('click', handleMenuOnClick)
+  })
+</script>
+
 <style>
-  .header__list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 1em;
-    max-width: 100%;
-    overflow-x: auto;
+  header {
+    animation: apply-bg linear both;
+    animation-timeline: scroll();
+    animation-range: 0px 128px;
+  }
+
+  @keyframes apply-bg {
+    to {
+      background-color: hsl(var(--background));
+    }
   }
 </style>

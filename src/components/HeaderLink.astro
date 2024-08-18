@@ -1,8 +1,12 @@
 ---
-import type { HTMLAttributes } from 'astro/types'
-type Props = HTMLAttributes<'a'>
+import { cn } from '@src/libs/utils'
 
-const { href, class: className, ...props } = Astro.props
+interface Props {
+  href: string
+  className?: string
+}
+
+const { href, className = '' } = Astro.props
 const { pathname } = Astro.url
 const ariaCurrent = href === pathname || href === pathname.replace(/\/$/, '') ? 'page' : ''
 ---
@@ -10,9 +14,8 @@ const ariaCurrent = href === pathname || href === pathname.replace(/\/$/, '') ? 
 <li>
   <a
     href={href}
-    class:list={[className]}
+    class={cn('text-nowrap', className)}
     aria-current={ariaCurrent ? ariaCurrent : undefined}
-    {...props}
   >
     <slot />
   </a>
@@ -20,6 +23,7 @@ const ariaCurrent = href === pathname || href === pathname.replace(/\/$/, '') ? 
 
 <style>
   a[aria-current='page'] {
-    font-weight: bolder;
+    color: hsl(var(--foreground));
+    font-weight: 700;
   }
 </style>

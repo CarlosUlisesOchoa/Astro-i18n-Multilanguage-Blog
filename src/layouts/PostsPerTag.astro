@@ -17,6 +17,11 @@ const filteredPosts = await getPostsByTag('blog', frontmatter.tag, Astro.current
 ---
 
 <Page {frontmatter}>
+  <div>
+    lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, quia! lorem ipsum
+    dolor sit amet consectetur adipisicing elit. Voluptatem, quia! lorem ipsum dolor sit amet
+    consectetur adipisicing elit. Voluptatem, quia!
+  </div>
   <ul>
     {
       filteredPosts.map(({ data, slug }) => (

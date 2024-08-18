@@ -8,23 +8,25 @@ const title = uiStrings.pageNotFoundHeading[defaultLocale]
 
 <Html frontmatter={{ title, description: title }}>
   <Header />
-  <main id="main">
-    <article class="prose">
-      {locales.map((locale)=>(
-        <h1 lang={locale} style="display: none">{uiStrings.pageNotFoundHeading[locale]}</h1>
-        <p lang={locale} style="display: none">{uiStrings.pageNotFoundBody[locale]}</p>
-        <>
-          {locale === defaultLocale &&
-            <noscript>
-              <h1 lang={defaultLocale}>{uiStrings.pageNotFoundHeading[defaultLocale]}</h1>
-              <p lang={defaultLocale}>{uiStrings.pageNotFoundBody[defaultLocale]}</p>
-            </noscript>
-          }
-        </>
-      ))}
-      <slot />
-    </article>
-  </main>
+  <div class='body mt-4 py-0 px-4 sm:px-8 u-center'>
+    <main id="main" class="page">
+      <article class="md-content">
+        {locales.map((locale)=>(
+          <h1 lang={locale} style="display: none">{uiStrings.pageNotFoundHeading[locale]}</h1>
+          <p lang={locale} style="display: none">{uiStrings.pageNotFoundBody[locale]}</p>
+          <>
+            {locale === defaultLocale &&
+              <noscript>
+                <h1 lang={defaultLocale}>{uiStrings.pageNotFoundHeading[defaultLocale]}</h1>
+                <p lang={defaultLocale}>{uiStrings.pageNotFoundBody[defaultLocale]}</p>
+              </noscript>
+            }
+          </>
+        ))}
+        <slot />
+      </article>
+    </main>
+  </div>
 </Html>
 
 <script define:vars={{locales: locales, defaultLocale: defaultLocale}}>

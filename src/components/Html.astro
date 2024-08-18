@@ -1,14 +1,12 @@
 ---
 import Head from '@components/Head.astro';
-import SkipLink from '@components/SkipLink.astro';
 import type { CommonFrontmatter } from '@src/types';
 interface Props{
   frontmatter: CommonFrontmatter,
   includeCanonicalMeta?: boolean,
-  includeSkipLink?: boolean
 }
 
-const {frontmatter, includeCanonicalMeta = true, includeSkipLink = true} = Astro.props
+const {frontmatter, includeCanonicalMeta = true } = Astro.props
 const mode: string = import.meta.env.MODE
 const lang = Astro.currentLocale
 ---
@@ -20,9 +18,6 @@ const lang = Astro.currentLocale
     </Head>
   </head>
   <body>
-    {includeSkipLink &&
-      <SkipLink />
-    }
 		<slot/>
 	</body>
   {mode === 'development' &&

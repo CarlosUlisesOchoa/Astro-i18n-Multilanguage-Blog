@@ -6,4 +6,4 @@ collection: blog
 reference: blog
 ---
 
-Here's the blog page.
+This is the blog page, here are the latest posts that the author has published. This blog is updated frequently.

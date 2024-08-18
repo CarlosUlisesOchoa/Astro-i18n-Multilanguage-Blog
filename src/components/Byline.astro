@@ -4,12 +4,13 @@ import { uiStrings } from '@i18n/uiStrings'
 interface Props {
   pubDate: Date
   updatedDate: Date
+  className?: string
 }
-const { pubDate, updatedDate } = Astro.props
+const { pubDate, updatedDate, className = '' } = Astro.props
 const postLastUpdatedOn = `${uiStrings.postLastUpdatedOn[Astro.currentLocale]} `
 ---
 
-<p>
+<p class={className}>
   <FormattedDate date={pubDate} />
   {
     updatedDate && (
