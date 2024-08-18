@@ -13,29 +13,49 @@ const posts = await getPublishedPosts(Astro.currentLocale, collection)
 ---
 
 <MainI18n {frontmatter} collection='pages'>
-  <main id='main'>
-    <header class='prose'>
-      <h1>{title}</h1>
-      <slot />
-    </header>
-    <ul>
-      {
-        posts.map((post) => (
-          <li>
-            <a href={`${getRelativePostPath(Astro.currentLocale, collection, post.slug)}`}>
-              <img width={720} height={360} src={post.data.previewImage} alt='' />
-              <h2 class='title'>{post.data.title}</h2>
-              <p class='date'>
-                <FormattedDate date={post.data.pubDate} />
-              </p>
-            </a>
-            <blockquote
-              cite={`${getRelativePostPath(Astro.currentLocale, collection, post.slug)}`}>
-              {getPostDescription(post)}
-            </blockquote>
-          </li>
-        ))
-      }
-    </ul>
-  </main>
+  <div class='body mt-4 py-0 px-4 sm:px-8 u-center'>
+    <main id='main' class='page'>
+      <header id='article-header' class='article-header'>
+        <h1 class='pb-1'>{title}</h1>
+      </header>
+      <div class='md-content' id='md-content'>
+        <slot />
+      </div>
+      <ul>
+        {
+          posts.map((post) => (
+            <li class='group mt-4 cursor-pointer hover:shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)]'>
+              <a
+                class=''
+                href={`${getRelativePostPath(Astro.currentLocale, collection, post.slug)}`}>
+                {post.data.previewImage && (
+                  <img
+                    class='w-full mb-4'
+                    width={800}
+                    height={400}
+                    src={post.data.previewImage}
+                    alt=''
+                  />
+                )}
+                <h2 class='pb-1 group-hover:text-blue-500'>{post.data.title}</h2>
+              </a>
+              {post.data.pubDate && (
+                <p class='date mt-2'>
+                  <FormattedDate
+                    className='group-hover:text-blue-500 cursor-pointer'
+                    date={post.data.pubDate}
+                  />
+                </p>
+              )}
+              <blockquote
+                class='mt-4'
+                cite={`${getRelativePostPath(Astro.currentLocale, collection, post.slug)}`}>
+                {getPostDescription(post)}
+              </blockquote>
+            </li>
+          ))
+        }
+      </ul>
+    </main>
+  </div>
 </MainI18n>

@@ -1,0 +1,70 @@
+---
+import type { TranslationLink } from './MainI18n.astro'
+import { uiStrings } from '@i18n/uiStrings'
+import { cn } from '@src/libs/utils'
+import LanguageIcon from './Icons/LanguageIcon.astro'
+
+interface Props {
+  translationLinks: TranslationLink[]
+  className?: string
+}
+
+const currentLocale = Astro.currentLocale
+
+const { translationLinks, className = '' } = Astro.props
+translationLinks.push({
+  absoluteURL: Astro.url.pathname,
+  relativeURL: Astro.url.pathname,
+  locale: Astro.currentLocale,
+  label: uiStrings[Astro.currentLocale][Astro.currentLocale],
+})
+
+const languageSwitcherLanguageSelection =
+  uiStrings.languageSwitcherLanguageSelection[Astro.currentLocale]
+
+function getTranslationLink(locale: string): string {
+  const translation = translationLinks.find((translation) => translation.locale === locale)
+  return translation?.relativeURL ?? ''
+}
+---
+
+<div class={cn('flex items-center gap-2', className)}>
+  <LanguageIcon className='w-6 h-6' />
+  <select
+    id='languageSelect'
+    aria-label={languageSwitcherLanguageSelection}
+    class='my-auto ps-2 pe-1 cursor-pointer py-[0.65rem] bg-gray-100 border-2 border-gray-200 text-foreground text-sm rounded-lg w-full dark:border-gray-800/40 dark:hover:border-gray-800/80 hover:bg-gray-200 dark:bg-gray-700/20 dark:hover:bg-gray-700/60'
+  >
+    {
+      translationLinks.reverse().map((item) => (
+        <option
+          class='bg-gray-200 dark:bg-gray-900'
+          selected={item.locale === currentLocale}
+          value={item.locale}
+          data-href={getTranslationLink(item.locale) ?? '#!'}>
+          {item.locale.toUpperCase()}
+        </option>
+      ))
+    }
+  </select>
+
+  <script is:inline>
+    function getSelectElement() {
+      return document.getElementById('languageSelect')
+    }
+
+    function handleLanguageChange(e) {
+      const selectedOption = e.target.options[e.target.selectedIndex]
+      window.location.href = selectedOption.getAttribute('data-href')
+    }
+
+    const selectElement = getSelectElement()
+    selectElement.addEventListener('change', handleLanguageChange)
+
+    document.addEventListener('astro:after-swap', () => {
+      const selectElement = getSelectElement()
+      selectElement.removeEventListener('change', handleLanguageChange)
+      selectElement.addEventListener('change', handleLanguageChange)
+    })
+  </script>
+</div>
