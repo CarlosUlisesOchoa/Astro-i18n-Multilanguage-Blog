@@ -1,29 +1,13 @@
-# Astro 4.12 + i18n
+# Astro 4 + Multilanguage (i18n) + Blog System Example
 
-### This example includes ES | EN languages (Spanish and English)
+### Take a look at this basic but pretty and clean example
 
-### Home page (English)
-
-![image](https://github.com/user-attachments/assets/80725a88-c477-4fe7-9ffe-ae1391d94911)
-
-### Blog (English)
-
-![image](https://github.com/user-attachments/assets/9d44d420-4526-468b-811d-3d22d2e1f3df)
-
-### Blog (Spanish)
-
-![image](https://github.com/user-attachments/assets/53710025-8a4f-4f2d-9160-58484681225a)
-
-### First post (English)
-
-![image](https://github.com/user-attachments/assets/60657acf-0dba-4d0f-8d3b-82fcc7fdbab9)
-
-### First post (Spanish)
-
-![image](https://github.com/user-attachments/assets/235e15d7-ab62-4c95-8286-384d75af8fbf)
+![ff](https://github.com/user-attachments/assets/3715d032-1057-4844-87b3-4c0322fc9f33)
 
 ## Features
 
+- 🎨 Theme system (Light/Dark), it detect and set preferred browser theme
+- 🌐 Language Switcher (ES/EN)
 - ⛓️ Linked translations via a reference property: no need for matching slugs between locales.
 - 🏖️ Allow adding pages for a new locale with minimal effort; use the default locale\* as a fallback for missing settings and strings.
 - 🏷️ Content tags á la WordPress
@@ -55,6 +39,7 @@ You'll see the following folders and files:
 │   │   ├── uiStrings.js ← Localized headings, labels, etc.
 │   │   └── utilities ← i18n-specific functions
 │   ├── layouts/
+│   ├── libs/
 │   ├── styles/
 │   ├── utilities/
 │   ├── consts.ts ← Settings loaded by astro.config.mjs
